@@ -26,6 +26,7 @@ interface Product {
   title: string;
   image_url: string;
   price: number;
+  quantity: number;
 }
 
 const Dashboard: React.FC = () => {
@@ -35,14 +36,16 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     async function loadProducts(): Promise<void> {
-      // TODO
+      const productsList = await api.get('products');
+
+      setProducts(productsList.data);
     }
 
     loadProducts();
   }, []);
 
   function handleAddToCart(item: Product): void {
-    // TODO
+    addToCart(item);
   }
 
   return (
